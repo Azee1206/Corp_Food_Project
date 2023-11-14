@@ -8,4 +8,4 @@ class Food(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'orders'
     order_number = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     order_info = sqlalchemy.Column(sqlalchemy.String)  # информация о блюдах, которые входят в заказ
-    client_id = sqlalchemy.Column(sqlalchemy.Integer)
+    client_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
