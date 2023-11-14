@@ -192,7 +192,7 @@ async def add_food_to_cart(inf):
 
     session = aiohttp.ClientSession()
     usr_id, food_id, food_type = inf.split("/")
-    await session.post(f"http://localhost:5000/api/cart/{usr_id}",
+    await session.post(f"http://localhost:5000/api/user/cart/{usr_id}",
                        json={"food_id": food_id, "amount": 1})
     await session.close()
 
