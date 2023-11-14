@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="jumbotron jumbotron-fluid container-fluid text-center">
+    <div class="container">
+        <h1 class="display-4">Corporate Dinner Dash</h1>
+        <p class="lead">Закажите вкусные блюда и бронируйте столики у нас прямо сейчас!</p>
+        <a class="rounded-pill btn btn-outline-dark" href="/menu/first">Заказать сейчас</a>
+    </div>
+</header>
+<main class="container">
+    <h2>МЕНЮ</h2>
+    <a href="/menu/first" class="visible-a">
+        <div class="row">
+            <div class="col-md-4 mt-5 text-center">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщец'>
+                        <h5 class="card-title">Борщ</h5>
+                        <p class="card-text">Традиционный украинский борщ со сметаной</p>
+                        <div class="d-flex align-items-center"></div>
+                        <p class="card-text lead">120₽</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5 text-center">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='борщец'>
+                        <h5 class="card-title">Солянка</h5>
+                        <p class="card-text">Наваристая мясная солянка с копченостями</p>
+                        <div class="d-flex align-items-center"></div>
+                        <p class="card-text lead">120₽</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5 text-center">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/broth.png') }}" class="card-img-top" alt='борщец'>
+                        <h5 class="card-title">Бульон куриный с лапшой</h5>
+                        <p class="card-text">Домашний куриный супчик на наваристом бульоне</p>
+                        <div class="d-flex align-items-center"></div>
+                        <p class="card-text lead">100₽</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</main>
+{% endblock %}

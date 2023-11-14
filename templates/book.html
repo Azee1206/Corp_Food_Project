@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4 text-center">Выберите стол</h1>
+    <div class="row">
+        {% for table in table12_list %}
+        {% if 'True' not in table['seats'] %}
+        <div class="col text-center">
+            <button class="btn" disabled data-bs-toggle="modal" data-bs-target="#table12{{ table['table_id'] }}" data-number={{table['table_id']}}><img class="table" src="{{ url_for('static', filename='img/12_occupied.png') }}"></button>
+        </div>
+        {% else %}
+        <div class="col text-center">
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#table12{{ table['table_id'] }}" data-number={{table['table_id']}}><img class="table" src="{{ url_for('static', filename='img/12.png') }}"></button>
+        </div>
+        {% endif %}
+        <div class="modal fade" id="table12{{ table['table_id'] }}" tabindex="-1" aria-labelledby="Label12" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="Label12">Стол №{{ table['table_id'] }}</h5>
+                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="text-center table" src="{{ url_for('static', filename='img/12_places.png') }}">
+                        <form action="" method="post">
+                            {{ form_book.hidden_tag() }}
+                            {{ form_book.date.label }}<br>
+                            {{ form_book.date(class="form-control") }}<br>
+                            {% for error in form_book.date.errors %}
+                            <p class="alert alert-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                            {{ form_book.time.label }}<br>
+                            {{ form_book.time(class="form-control") }}<br>
+                            {% for error in form_book.time.errors %}
+                            <p class="alert alert-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                            <div>Выберите бронируемые места:</div>
+                            {% for seat in table['seats'].split(';') %}
+                            {% if seat[2:] == 'True'%}
+                            {{ form_book[seat[0]].label }}
+                            {{ form_book[seat[0]] }}<br>
+                            {% endif %}
+                            {% endfor %}
+                            <a class="btn btn-primary" href="/payment">Оплатить</a>
+                            <div>{{ message }}</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for table in table6_list %}
+        {% if 'True' not in table['seats'] %}
+        <div class="col text-center">
+            <button class="btn" disabled data-bs-toggle="modal" data-bs-target="#table6{{ table['table_id'] }}" data-number={{table['table_id']}}><img class="table" src="{{ url_for('static', filename='img/6_occupied.png') }}"></button>
+        </div>
+        {% else %}
+        <div class="col text-center">
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#table6{{ table['table_id'] }}" data-number={{table['table_id']}}><img class="table" src="{{ url_for('static', filename='img/6.png') }}"></button>
+        </div>
+        {% endif %}
+        <div class="modal fade" id="table6{{ table['table_id'] }}" tabindex="-1" aria-labelledby="Label6" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="Label6">Стол №{{ table['table_id'] }}</h5>
+                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="text-center table" src="{{ url_for('static', filename='img/6_places.png') }}">
+                        <form action="" method="post">
+                            {{ form_book.hidden_tag() }}
+                            {{ form_book.date.label }}<br>
+                            {{ form_book.date(class="form-control") }}<br>
+                            {% for error in form_book.date.errors %}
+                            <p class="alert alert-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                            {{ form_book.time.label }}<br>
+                            {{ form_book.time(class="form-control") }}<br>
+                            {% for error in form_book.time.errors %}
+                            <p class="alert alert-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                            <div>Выберите бронируемые места:</div>
+                            {% for seat in table['seats'].split(';') %}
+                            {% if seat[2:] == 'True'%}
+                            {{ form_book[seat[0]].label }}
+                            {{ form_book[seat[0]] }}<br>
+                            {% endif %}
+                            {% endfor %}
+                            <a class="btn btn-primary" href="/payment">Оплатить</a>
+                            <div>{{ message }}</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
