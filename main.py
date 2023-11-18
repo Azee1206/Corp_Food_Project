@@ -18,6 +18,7 @@ import aiohttp
 from flask_restful import Api
 from resources_api.user_resources import UserHistoryResource, UserCartResource, UserPaymentResource
 from resources_api.food_resources import FoodAllRecourse, FoodRecourse, FoodRatingRecourse
+from resources_api.order_resources import OrderResource
 
 
 app = Flask(__name__)
@@ -29,6 +30,7 @@ api.add_resource(UserPaymentResource, '/api/user/payment/<int:user_id>')
 api.add_resource(FoodAllRecourse, '/api/food_all/<path:visible_foodtype>')
 api.add_resource(FoodRecourse, "/api/food/<food_id>")
 api.add_resource(FoodRatingRecourse, "/api/food/rating")
+api.add_resource(OrderResource, "/api/orders")
 
 app.config['SECRET_KEY'] = "secret_key"
 
@@ -310,6 +312,7 @@ async def payment_page():
             return render_template("payment.html", form_payment=form_payment, message=msg)
         sessionn = aiohttp.ClientSession()
         await sessionn.post(f"http://localhost:5000/api/user/history/{current_user.id}")
+        await sessionn.post("http://localhost:5000/api/orders")
         msg = "Оплата проведена успешно"
         return render_template("basket.html", message=msg, food_list=[])
     return render_template("payment.html", form_payment=form_payment)
