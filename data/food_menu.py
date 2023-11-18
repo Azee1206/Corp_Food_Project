@@ -14,4 +14,4 @@ class Food(SqlAlchemyBase, SerializerMixin):
     visible = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
     calories_proteins = sqlalchemy.Column(sqlalchemy.String)    # Информация о калориях, белках, жирах и углеводах разделенный ";"
     rating = sqlalchemy.Column(sqlalchemy.Float)
-    text_id = sqlalchemy.Column(sqlalchemy.String, primary_key=True, unique=True, index=True)
+    text_id = sqlalchemy.Column(sqlalchemy.String, primary_key=True, unique=True)

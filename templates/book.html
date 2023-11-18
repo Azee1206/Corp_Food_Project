@@ -42,7 +42,14 @@
                             {{ form_book[seat[0]] }}<br>
                             {% endif %}
                             {% endfor %}
-                            <a class="btn btn-primary" href="/payment">Оплатить</a>
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-success rounded-btn" href="/payment">Оплатить</a>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-sm btn-success rounded-btn" href="#">Оплатить по привязанной карте</a>
+                                </div>
+                            </div>
                             <div>{{ message }}</div>
                         </form>
                     </div>
@@ -90,7 +97,14 @@
                             {{ form_book[seat[0]] }}<br>
                             {% endif %}
                             {% endfor %}
-                            <a class="btn btn-primary" href="/payment">Оплатить</a>
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-primary rounded-btn" href="/payment">Оплатить</a>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-success rounded-btn" href="#">Оплатить по привязанной карте</a>
+                                </div>
+                            </div>
                             <div>{{ message }}</div>
                         </form>
                     </div>

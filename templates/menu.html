@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="sidebar border-bottom">
+<div class="sidebar border-bottom border-top">
     <ul class="nav justify-content-center mx-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/menu/breakfast">
+                Завтраки
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="/menu/first">
                 Первые блюда
@@ -48,7 +53,6 @@
                     <img src="{{ url_for('static', filename='img/' + item['text_id'] + '.png') }}" class="card-img-top" alt='{{ item["name"] }}'>
                     <h5 class="card-title">{{item["name"]}}</h5>
                     <p class="card-text">{{item["description"]}}</p>
-                    <div class="d-flex align-items-center"></div>
                     <p class="card-text lead">{{item["price"]}}₽</p>
                 </div>
             </div>
@@ -64,7 +68,7 @@
                         </div>
                         <div class="modal-footer">
                             <a href="/registration">
-                                <button type="button" class="btn btn-primary">Зарегистрироваться</button>
+                                <button type="button" class="btn btn-light">Зарегистрироваться</button>
                             </a>
                         </div>
                     </div>
@@ -99,9 +103,9 @@
                                 <div class="modal-body d-flex flex-column">
                                     <p>Состав:<br>{{item["composition"]}}</p>
                                     {% if current_user.is_authenticated %}
-                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}" type="button" class="rounded-pill btn btn-outline-dark btn-block align-self-end justify-content-end">В корзину</a>
+                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}" type="button" class="rounded-pill btn btn-light btn-block align-self-end justify-content-end">В корзину</a>
                                     {% else %}
-                                    <button type="button" class="rounded-pill btn btn-outline-dark btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
+                                    <button type="button" class="rounded-pill btn btn-light btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
                                     {% endif %}
                                 </div>
                             </div>

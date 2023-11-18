@@ -1,51 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<header class="jumbotron jumbotron-fluid container-fluid text-center">
-    <div class="container">
-        <h1 class="display-4">Corporate Dinner Dash</h1>
-        <p class="lead">Закажите вкусные блюда и бронируйте столики у нас прямо сейчас!</p>
-        <a class="rounded-pill btn btn-outline-dark" href="/menu/first">Заказать сейчас</a>
-    </div>
-</header>
-<main class="container">
-    <h2>МЕНЮ</h2>
-    <a href="/menu/first" class="visible-a">
-        <div class="row">
-            <div class="col-md-4 mt-5 text-center">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщец'>
-                        <h5 class="card-title">Борщ</h5>
-                        <p class="card-text">Традиционный украинский борщ со сметаной</p>
-                        <div class="d-flex align-items-center"></div>
-                        <p class="card-text lead">120₽</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5 text-center">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='борщец'>
-                        <h5 class="card-title">Солянка</h5>
-                        <p class="card-text">Наваристая мясная солянка с копченостями</p>
-                        <div class="d-flex align-items-center"></div>
-                        <p class="card-text lead">120₽</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5 text-center">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="{{ url_for('static', filename='img/broth.png') }}" class="card-img-top" alt='борщец'>
-                        <h5 class="card-title">Бульон куриный с лапшой</h5>
-                        <p class="card-text">Домашний куриный супчик на наваристом бульоне</p>
-                        <div class="d-flex align-items-center"></div>
-                        <p class="card-text lead">100₽</p>
-                    </div>
-                </div>
-            </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h2>Меню<a class="rounded-pill btn btn-light text-center ml-1" href="/menu/first">Посмотреть</a></h2>
+            <p class="lead" style="font-size: 24px;">Для приготовления используются только свежие продукты. Блюда не содержат сою, консерванты и усилители вкуса</p>
+            <p class="lead" style="font-size: 24px;">Мы еженедельное обновляем позиции в меню</p>
         </div>
-    </a>
-</main>
+        <div class="col">
+            <img src="{{ url_for('static', filename='img/borsh.png') }}" style="width: 100%" data-toggle="popover" data-bs-title="Борщ" data-bs-content="Традиционный украинский борщ со сметаной" alt='борщец'>
+        </div>
+        <div class="col">
+            <img src="{{ url_for('static', filename='img/cutletpotato.png') }}" style="width: 100%" data-toggle="popover" data-bs-title="Котлета рубленная куриная с пюре" data-bs-content="Рубленая котлетка из куриного филе с гарниром из пюре" alt='пюрешка'>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Комплексный обед<a class="rounded-pill btn btn-light text-center ml-1" href="/lunch">Заказать</a></h3>
+            <p class="lead" style="font-size: 24px;">Комплексный обед включает в себя один салат, один суп, одно горячее, один гарнир на выбор.</p>
+        </div>
+        <div class="col-6">
+            <img src="{{ url_for('static', filename='img/grech.png') }}" style="width: 65%" data-toggle="popover" data-bs-title="Греческий" data-bs-content="Классический овощной салат с сыром" alt='салатик'>
+        </div>
+    </div>
+        <h2 class="mb-4">О нас</h2>
+    <div class="row">
+        <div class="col">
+            <h3>Готовые комплексные обеды</h3>
+            <p class="lead" style="font-size: 24px;">У нас есть несколько готовых вариантов бизнес-ланча, чтобы Вам было проще выбирать</p>
+        </div>
+        <div class="col">
+            <h3>Регулярное обновление меню</h3>
+            <p class="lead" style="font-size: 24px;">Мы обновляем позиции в меню каждую неделю</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Доставка</h3>
+            <p class="lead" style="font-size: 24px;">У нас есть доставка блюд до рабочего места</p>
+        </div>
+        <div class="col">
+            <h3>Заказ и бронирование</h3>
+            <p class="lead" style="font-size: 24px;">Вы можете заранее онлайн выбрать блюда и забронировать место на нужное время</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -8,13 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet"/>
-    <title>Корпоративное питание</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Corporate Dinner Dash</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,15 +22,18 @@
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Главная</a>
+                <a class="nav-link" href="/menu/first">Меню</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/menu/first">Меню</a>
+                <a class="nav-link" href="/lunch">Бизнес-ланчи</a>
             </li>
             {% if current_user.is_authenticated %}
             {% if current_user.role == "admin"%}
             <li class="nav-item">
                 <a class="nav-link" href="/add">Изменение меню</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/orders">Заказы</a>
             </li>
             {% endif %}
             {% endif %}
@@ -48,10 +51,10 @@
             {% else %}
             <div class="text-end">
                 <a href="/login">
-                    <button type="button" class="btn btn-outline-primary me-2">Войти</button>
+                    <button type="button" class="btn btn-outline-dark">Войти</button>
                 </a>
                 <a href="/registration">
-                    <button type="button" class="btn btn-primary">Зарегистрироваться</button>
+                    <button type="button" class="btn btn-dark">Зарегистрироваться</button>
                 </a>
             </div>
         </ul>

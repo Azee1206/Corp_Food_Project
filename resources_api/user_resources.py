@@ -1,4 +1,3 @@
-import dataclasses
 from flask_restful import reqparse, abort, Resource
 from data import db_session
 from data.user import User
@@ -7,7 +6,11 @@ from data.food_menu import Food
 from flask import request
 
 
-@dataclasses.dataclass
+parser_add_to_cart = reqparse.RequestParser()
+parser_add_to_cart.add_argument("food_id", required=True)
+parser_add_to_cart.add_argument("amount", required=True)
+
+
 class UserCartResource(Resource):
     def get(self, user_id):
         """Функция получения и представления в удобном виде данных о корзине пользователя"""
@@ -92,7 +95,6 @@ class UserCartResource(Resource):
         return jsonify({'success': 'OK'})
 
 
-@dataclasses.dataclass
 class UserPaymentResource(Resource):
     def get(self, user_id):
         db_sess = db_session.create_session()
@@ -142,7 +144,6 @@ class UserPaymentResource(Resource):
         return jsonify({"msg": msg})
 
 
-@dataclasses.dataclass
 class UserHistoryResource(Resource):
     def get(self, user_id):
         db_sess = db_session.create_session()

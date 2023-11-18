@@ -17,9 +17,6 @@ import asyncio
 import aiohttp
 from flask_restful import Api
 from resources_api.user_resources import UserHistoryResource, UserCartResource, UserPaymentResource
-from resources_api.food_resources import FoodAllRecourse, FoodRecourse, FoodRatingRecourse
-from resources_api.order_resources import OrderResource
-
 
 app = Flask(__name__)
 api = Api(app)
@@ -27,10 +24,6 @@ api = Api(app)
 api.add_resource(UserHistoryResource, '/api/user/history/<int:user_id>')
 api.add_resource(UserCartResource, '/api/user/cart/<int:user_id>')
 api.add_resource(UserPaymentResource, '/api/user/payment/<int:user_id>')
-api.add_resource(FoodAllRecourse, '/api/food_all/<path:visible_foodtype>')
-api.add_resource(FoodRecourse, "/api/food/<food_id>")
-api.add_resource(FoodRatingRecourse, "/api/food/rating")
-api.add_resource(OrderResource, "/api/orders")
 
 app.config['SECRET_KEY'] = "secret_key"
 
@@ -127,27 +120,27 @@ async def rate_food(info):
     # первый элемент info - тип блюда, второй - оценка, третий - id оцениваемого блюда
     info = info.split("/")
     food_type = info[0]
-    await session.post(f"http://localhost:5000/api/food/rating", json={"food_id": info[2], "rate": info[1]})
+    await session.post(f"http://localhost:5000/api/rating", json={"food_id": info[2], "rate": info[1]})
     await session.close()
     return redirect(f'/menu/{food_type}')
 
 
 @app.route('/menu/<food_type>')
 async def menu_page(food_type):
-
     """Обработка страницы меню"""
 
     session = aiohttp.ClientSession()
 
-    food_list_response = await session.get(f'http://localhost:5000/api/food_all/1/{food_type}')
+    food_list_response = await session.get('http://localhost:5000/api/food')
     food_list_json = await food_list_response.json()
     food_list = food_list_json["food"]
     await session.close()
 
+    itog_food = [i for i in food_list if i['type'] == food_type and i['visible'] is True]
     if current_user.is_authenticated:
         if current_user.role == 'admin':
-            food_list.append('add')
-    return render_template('menu.html', food_list=food_list, cur_usr=current_user)
+            itog_food.append('add')
+    return render_template('menu.html', food_list=itog_food, cur_usr=current_user)
 
 
 @app.route('/book', methods=['GET', 'POST'])
@@ -174,7 +167,6 @@ def book_page():
 @app.route('/food_delete/<path:inf>', methods=['GET', 'POST'])
 @login_required
 async def delete_food_from_cart(inf):
-
     """Удаления блюда из корзины"""
 
     session = aiohttp.ClientSession()
@@ -189,12 +181,11 @@ async def delete_food_from_cart(inf):
 @app.route('/food_add/<path:inf>', methods=['GET', 'POST'])
 @login_required
 async def add_food_to_cart(inf):
-
     """Добавление блюда в корзину"""
 
     session = aiohttp.ClientSession()
     usr_id, food_id, food_type = inf.split("/")
-    await session.post(f"http://localhost:5000/api/user/cart/{usr_id}",
+    await session.post(f"http://localhost:5000/api/cart/{usr_id}",
                        json={"food_id": food_id, "amount": 1})
     await session.close()
 
@@ -204,7 +195,6 @@ async def add_food_to_cart(inf):
 @app.route('/basket', methods=['GET', "POST"])
 @login_required
 async def basket_page():
-
     """Обработка корзины"""
 
     session = aiohttp.ClientSession()
@@ -229,12 +219,12 @@ async def add_page():
         if form.validate_on_submit():
             text_id = translit(form.name.data.split()[0], language_code='ru', reversed=True).lower()
             session = aiohttp.ClientSession()
-            await session.post(f"http://localhost:5000/api/food/none",
-                 json={"name": form.name.data, "type": type_converse[form.type.data],
-                       "composition": form.composition.data, "description": form.description.data,
-                       "price": form.price.data, "text_id": text_id, "calories": form.calories.data,
-                       "proteins": form.proteins.data, "fats": form.fats.data,
-                       "carbohydrates": form.carb.data})
+            await session.post(f"http://localhost:5000/api/food",
+                               json={"name": form.name.data, "type": type_converse[form.type.data],
+                                     "composition": form.composition.data, "description": form.description.data,
+                                     "price": form.price.data, "text_id": text_id, "calories": form.calories.data,
+                                     "proteins": form.proteins.data, "fats": form.fats.data,
+                                     "carbohydrates": form.carb.data})
             img = form.image.data
             img.save(os.path.join(app.root_path, "static", "img", f"{text_id}.png"))
             await session.close()
@@ -249,7 +239,6 @@ async def add_page():
 @app.route('/logout')
 @login_required
 async def logout():
-
     """Выход из профиля"""
 
     logout_user()
@@ -259,7 +248,6 @@ async def logout():
 
 @app.route("/profile", methods=['GET', 'POST'])
 async def profile_page():
-
     """Обработка страницы профиля"""
 
     form = PaymentForm()
@@ -281,7 +269,7 @@ async def profile_page():
         cvc = form.cvc.data
 
         msg_res = await session.post(f"http://localhost:5000/api/user/payment/{current_user.id}",
-                           json={"number": number, "term": term, "cvc": cvc})
+                                     json={"number": number, "term": term, "cvc": cvc})
 
         msg_json = await msg_res.json()
         msg = msg_json["msg"]
@@ -312,14 +300,22 @@ async def payment_page():
             return render_template("payment.html", form_payment=form_payment, message=msg)
         sessionn = aiohttp.ClientSession()
         await sessionn.post(f"http://localhost:5000/api/user/history/{current_user.id}")
-        await sessionn.post("http://localhost:5000/api/orders")
         msg = "Оплата проведена успешно"
         return render_template("basket.html", message=msg, food_list=[])
     return render_template("payment.html", form_payment=form_payment)
 
 
-async def main():
+@app.route('/lunch')
+async def lunch_page():
+    return render_template("lunch.html")
 
+
+@app.route('/orders')
+async def orders_page():
+    return render_template("orders.html")
+
+
+async def main():
     """Запуск сайта"""
 
     db_session.global_init("db/corp_food_info.db")
