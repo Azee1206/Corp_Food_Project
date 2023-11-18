@@ -14,63 +14,6 @@ blueprint = flask.Blueprint(
 )
 
 
-@blueprint.route('/api/food', methods=['GET'])
-async def get_food():
-    """Функция получения ВСЕХ блюд из базы данных"""
-    db_sess = db_session.create_session()
-    food = db_sess.query(Food).all()
-    return jsonify(
-        {
-            "food":
-                [item.to_dict(only=
-                              ("name", "type", "composition", "description", "price", "visible", "text_id", "calories_proteins"))
-                 for item in food]
-        }
-    )
-
-
-@blueprint.route('/api/food/<food_id>', methods=['GET'])
-async def get_one_food(food_id):
-    """Функция получения ОДНОГО блюда из базы данных"""
-    db_sess = db_session.create_session()
-    food = db_sess.query(Food).get(food_id)
-    if not food:
-        return jsonify({'error': 'Not found'})
-    return jsonify(
-        {
-            'food': food.to_dict(only=
-                                 ("name", "type", "composition", "description", "price", "visible", "text_id", "calories_proteins"))
-        }
-    )
-
-
-@blueprint.route('/api/food', methods=['POST'])
-async def create_food():
-    """Функция добавления в базу данных блюда"""
-    if not request.json:
-        return jsonify({'error': 'Empty request'})
-    elif not all(key in request.json for key in
-                 ["name", "type", "composition", "description", "price",
-                  "text_id", "calories", "proteins", "fats", "carbohydrates"]):
-        return jsonify({'error': 'Bad request'})
-    db_sess = db_session.create_session()
-    calories_info = (f'{request.json["calories"]} ккал;{request.json["proteins"]} г;'
-                     f'{request.json["fats"]} г;{request.json["carbohydrates"]} г')
-    food = Food(
-        name=request.json["name"],
-        type=request.json["type"],
-        composition=request.json["composition"],
-        description=request.json["description"],
-        price=request.json["price"],
-        text_id=request.json["text_id"],
-        calories_proteins=calories_info,
-        rating=5
-    )
-    db_sess.add(food)
-    db_sess.commit()
-    return jsonify({'success': 'OK'})
-
-
 @blueprint.route('/api/table', methods=["GET"])
 async def get_all_tables():
     """Функция получения информации о ВСЕХ столах"""
@@ -142,13 +85,9 @@ async def take_place(table_place):
     return jsonify({'success': 'OK'})
 
 
-@blueprint.route('/api/rating', methods=["POST"])
-async def add_to_rating():
-    json_data = request.json
-    food_id, rate = json_data["food_id"], json_data["rate"]
-    db_sess = db_session.create_session()
-    food = db_sess.query(Food).get(food_id)
-    cur_rating_inf: float = food.rating
-    food.rating = (cur_rating_inf + int(rate)) / 2
-    db_sess.commit()
-    return jsonify({'success': 'OK'})
+@blueprint.route('/api/order', methods=['GET'])
+async def load_orders():
+
+    return jsonify({
+        "orders": [item.to_dict for item in _]
+    })

@@ -4,13 +4,21 @@ from data.user import User
 from flask import jsonify
 from data.food_menu import Food
 from flask import request
+import dataclasses
 
 
-parser_add_to_cart = reqparse.RequestParser()
-parser_add_to_cart.add_argument("food_id", required=True)
-parser_add_to_cart.add_argument("amount", required=True)
+@dataclasses.dataclass
+class UserNameSurResource(Resource):
+    def get(self, user_id):
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).get(user_id)
+        if not user:
+            return jsonify({'error': 'Not found'})
+        return jsonify({"name": user.name, "sur": user.surname})
 
 
+
+@dataclasses.dataclass
 class UserCartResource(Resource):
     def get(self, user_id):
         """Функция получения и представления в удобном виде данных о корзине пользователя"""
@@ -95,6 +103,7 @@ class UserCartResource(Resource):
         return jsonify({'success': 'OK'})
 
 
+@dataclasses.dataclass
 class UserPaymentResource(Resource):
     def get(self, user_id):
         db_sess = db_session.create_session()
@@ -144,6 +153,7 @@ class UserPaymentResource(Resource):
         return jsonify({"msg": msg})
 
 
+@dataclasses.dataclass
 class UserHistoryResource(Resource):
     def get(self, user_id):
         db_sess = db_session.create_session()

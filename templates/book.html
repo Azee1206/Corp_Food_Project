@@ -46,9 +46,11 @@
                                 <div class="col">
                                     <a class="btn btn-success rounded-btn" href="/payment">Оплатить</a>
                                 </div>
+                                {% if cur_usr.payment_inf %}
                                 <div class="col">
-                                    <a class="btn btn-sm btn-success rounded-btn" href="#">Оплатить по привязанной карте</a>
+                                    <a class="btn btn-sm btn-success rounded-btn" href="/pay_if_payment_info">Оплатить по привязанной карте</a>
                                 </div>
+                                {% endif %}
                             </div>
                             <div>{{ message }}</div>
                         </form>
