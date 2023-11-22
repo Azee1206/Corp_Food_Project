@@ -8,32 +8,29 @@
             <h5 class="card-title">Первое</h5>
             <div class="row">
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card f" onclick="selectCardF(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщ'>
+                            <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщец'>
                             <h5 class="card-title">Борщ</h5>
                             <p class="card-text">Традиционный украинский борщ со сметаной</p>
-                            <p class="card-text lead">120₽</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card f" onclick="selectCardF(this)">
                         <div class="card-body">
                             <img src="{{ url_for('static', filename='img/broth.png') }}" class="card-img-top" alt='бульон'>
                             <h5 class="card-title">Бульон куриный с лапшой</h5>
                             <p class="card-text">Домашний куриный супчик на наваристом бульоне</p>
-                            <p class="card-text lead">100₽</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card f" onclick="selectCardF(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='борщ'>
+                            <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='соляночка'>
                             <h5 class="card-title">Солянка</h5>
                             <p class="card-text">Наваристая мясная солянка с копченостями</p>
-                            <p class="card-text lead">120₽</p>
                         </div>
                     </div>
                 </div>
@@ -42,32 +39,29 @@
             <h5 class="card-title">Второе</h5>
             <div class="row">
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card s" onclick="selectCardS(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщ'>
-                            <h5 class="card-title">Борщ</h5>
-                            <p class="card-text">Традиционный украинский борщ со сметаной</p>
-                            <p class="card-text lead">120₽</p>
+                            <img src="{{ url_for('static', filename='img/cutletpotato.png') }}" class="card-img-top" alt='пюрешка'>
+                            <h5 class="card-title">Котлета рубленная куриная с пюре</h5>
+                            <p class="card-text">Рубленая котлетка из куриного филе с гарниром в виде пюре</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card s" onclick="selectCardS(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/broth.png') }}" class="card-img-top" alt='бульон'>
-                            <h5 class="card-title">Бульон куриный с лапшой</h5>
-                            <p class="card-text">Домашний куриный супчик на наваристом бульоне</p>
-                            <p class="card-text lead">100₽</p>
+                            <img src="{{ url_for('static', filename='img/cutletkiev.png') }}" class="card-img-top" alt='пюрешка с киевской котлеткой'>
+                            <h5 class="card-title">Котлета по-Киевски с пюре</h5>
+                            <p class="card-text">Натуральная курина котлета, фаршированная сливочным маслом с гарниром в виде пюре</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card s" onclick="selectCardS(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='борщ'>
-                            <h5 class="card-title">Солянка</h5>
-                            <p class="card-text">Наваристая мясная солянка с копченостями</p>
-                            <p class="card-text lead">120₽</p>
+                            <img src="{{ url_for('static', filename='img/gulyashgrech.png') }}" class="card-img-top" alt='гречка'>
+                            <h5 class="card-title">Гуляш из говядины с гречей</h5>
+                            <p class="card-text">Филе говядины, тушеное в томатном соусе с гарниром в виде гречки</p>
                         </div>
                     </div>
                 </div>
@@ -76,32 +70,29 @@
             <h5 class="card-title">Салат</h5>
             <div class="row">
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card sl" onclick="selectCardSL(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщ'>
-                            <h5 class="card-title">Борщ</h5>
-                            <p class="card-text">Традиционный украинский борщ со сметаной</p>
-                            <p class="card-text lead">120₽</p>
+                            <img src="{{ url_for('static', filename='img/oliv.png') }}" class="card-img-top" alt='оливьешка'>
+                            <h5 class="card-title">Оливье</h5>
+                            <p class="card-text">Знаменитый салат с зеленым горошком и колбасой</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card sl" onclick="selectCardSL(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/broth.png') }}" class="card-img-top" alt='бульон'>
-                            <h5 class="card-title">Бульон куриный с лапшой</h5>
-                            <p class="card-text">Домашний куриный супчик на наваристом бульоне</p>
-                            <p class="card-text lead">100₽</p>
+                            <img src="{{ url_for('static', filename='img/grech.png') }}" class="card-img-top" alt='греческий'>
+                            <h5 class="card-title">Греческий</h5>
+                            <p class="card-text">Классический овощной салат с сыром</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card sl" onclick="selectCardSL(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='борщ'>
-                            <h5 class="card-title">Солянка</h5>
-                            <p class="card-text">Наваристая мясная солянка с копченостями</p>
-                            <p class="card-text lead">120₽</p>
+                            <img src="{{ url_for('static', filename='img/vesen.png') }}" class="card-img-top" alt='весенний'>
+                            <h5 class="card-title">Весенний</h5>
+                            <p class="card-text">Салат из свежих овощей</p>
                         </div>
                     </div>
                 </div>
@@ -110,38 +101,35 @@
             <h5 class="card-title">Напиток</h5>
             <div class="row">
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card d" onclick="selectCardd(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/borsh.png') }}" class="card-img-top" alt='борщ'>
-                            <h5 class="card-title">Борщ</h5>
-                            <p class="card-text">Традиционный украинский борщ со сметаной</p>
-                            <p class="card-text lead">120₽</p>
+                            <img src="{{ url_for('static', filename='img/mors.png') }}" class="card-img-top" alt='морсик'>
+                            <h5 class="card-title">Морс</h5>
+                            <p class="card-text">Сладкий ягодный морс из клюквы</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card d" onclick="selectCardd(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/broth.png') }}" class="card-img-top" alt='бульон'>
-                            <h5 class="card-title">Бульон куриный с лапшой</h5>
-                            <p class="card-text">Домашний куриный супчик на наваристом бульоне</p>
-                            <p class="card-text lead">100₽</p>
+                            <img src="{{ url_for('static', filename='img/tea.png') }}" class="card-img-top" alt='чаёк'>
+                            <h5 class="card-title">Чай</h5>
+                            <p class="card-text">Изысканный, ароматный, чёрный чай</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center radio-card d" onclick="selectCardd(this)">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename='img/solyanka.png') }}" class="card-img-top" alt='борщ'>
-                            <h5 class="card-title">Солянка</h5>
-                            <p class="card-text">Наваристая мясная солянка с копченостями</p>
-                            <p class="card-text lead">120₽</p>
+                            <img src="{{ url_for('static', filename='img/cofee.png') }}" class="card-img-top" alt='кофеёк'>
+                            <h5 class="card-title">Кофе Капучино</h5>
+                            <p class="card-text">Натуральный зерновой кофе</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <a class='btn btn-success btn-rounded mt-3' href="#">Сформировать</a>
+    <p><input class="btn btn-success btn-rounded mt-3" type="submit" value="Сформировать"></p>
 </div>
 {% endblock %}

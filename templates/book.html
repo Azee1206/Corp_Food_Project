@@ -24,7 +24,6 @@
                     <div class="modal-body">
                         <img class="text-center table" src="{{ url_for('static', filename='img/12_places.png') }}">
                         <form action="" method="post">
-                            <input type="hidden" name="table_id" value="{{ table['table_id'] }}">
                             {{ form_book.hidden_tag() }}
                             {{ form_book.date.label }}<br>
                             {{ form_book.date(class="form-control") }}<br>
@@ -45,11 +44,11 @@
                             {% endfor %}
                             <div class="row">
                                 <div class="col">
-                                    {{ form_book.submit_payment(type="submit", class="btn btn-sm btn-success rounded-btn") }}
+                                    <a class="btn btn-success rounded-btn" href="/payment">Оплатить</a>
                                 </div>
                                 {% if cur_usr.payment_inf %}
                                 <div class="col">
-                                    {{ form_book.submit_payment_if_info(type="submit", class="btn btn-sm btn-success rounded-btn") }}
+                                    <a class="btn btn-sm btn-success rounded-btn" href="/pay_if_payment_info">Оплатить по привязанной карте</a>
                                 </div>
                                 {% endif %}
                             </div>
@@ -82,7 +81,6 @@
                     <div class="modal-body">
                         <img class="text-center table" src="{{ url_for('static', filename='img/6_places.png') }}">
                         <form action="" method="post">
-                            <input type="hidden" name="table_id" value="{{ table['table_id'] }}">
                             {{ form_book.hidden_tag() }}
                             {{ form_book.date.label }}<br>
                             {{ form_book.date(class="form-control") }}<br>
@@ -103,13 +101,11 @@
                             {% endfor %}
                             <div class="row">
                                 <div class="col">
-                                    {{ form_book.submit_payment(type="submit", class="btn btn-sm btn-success rounded-btn") }}
+                                    <a class="btn btn-primary rounded-btn" href="/payment">Оплатить</a>
                                 </div>
-                                {% if cur_usr.payment_inf %}
                                 <div class="col">
-                                    {{ form_book.submit_payment_if_info(type="submit", class="btn btn-sm btn-success rounded-btn") }}
+                                    <a class="btn btn-success rounded-btn" href="#">Оплатить по привязанной карте</a>
                                 </div>
-                                {% endif %}
                             </div>
                             <div>{{ message }}</div>
                         </form>

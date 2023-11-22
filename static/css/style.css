@@ -1,30 +1,90 @@
-
 html {
     position: relative;
     min-height: 100%;
 }
-body {
-    padding-bottom: 100px;
+main {
+    padding-bottom: 300px;
 }
 footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: auto;
+    background: #A77A58;
+    color: #fff;
+}
+footer .nav-link {
+    color: #fff;
+    text-decoration: none;
 }
 h2 {
     font-size: 40px;
+}
+.price {
+    color: #D2B48C;
 }
 .rounded-btn {
     border-radius: 8px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-.jumbotron {
-    height: 100vh;
-}
 .star_cont {
     display: flex;
     flex-direction: row-reverse;
+}
+.radio-card.selected {
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+}
+.dish {
+    &:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+}
+.navbar-brand {
+    color: #4C2F27;
+}
+.category {
+    border-radius: 118px;
+    border: 1.5px solid #DBDFD0;
+    width: 150px;
+    height: 48px;
+    &:hover {
+        color: #fff;
+        background: #D2B48C;
+        border: 1.5px solid #D2B48C;
+    }
+}
+.btn-login {
+    border-radius: 118px;
+    background: #A77A58;
+    border: 1.5px solid #A77A58;
+    color: #fff;
+    &:hover {
+        color: #fff;
+        background: #926949;
+        border: 1.5px solid #926949;
+    }
+}
+.btn-outline-login{
+    border-radius: 118px;
+    border: 1.5px solid #A77A58;
+    color: #A77A58;
+    &:hover {
+        color: #926949;
+        border: 1.5px solid #926949;
+    }
+}
+.main-btn, .main-btn:hover, .main-btn:active,  .main-btn:visited{
+    color: #A77A58;
+    text-decoration: none;
+}
+.main-back {
+    background-image: url('../img/background.png');
+    width: 100%;
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+}
+.rating {
+    font-size: 27px;
 }
 .star {
     padding: 0;
@@ -161,15 +221,20 @@ h2 {
  text-transform: capitalize;
 }
 .form-horizontal .btn{
- float: right;
- font-size: 14px;
- color: #fff;
- background: #00b4ef;
- border-radius: 8px;
- padding: 10px 25px;
- border: none;
- text-transform: capitalize;
- transition: all 0.5s ease 0s;
+    float: right;
+    padding: 10px 25px;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+    border-radius: 118px;
+    background: #A77A58;
+    border: 1.5px solid #A77A58;
+    color: #fff;
+    &:hover {
+        color: #fff;
+        background: #926949;
+        border: 1.5px solid #926949;
+    }
 }
 .form-horizontal .image{
  padding: 6px 20px 0 45px;

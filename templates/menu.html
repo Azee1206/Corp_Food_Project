@@ -1,59 +1,70 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="sidebar border-bottom border-top">
-    <ul class="nav justify-content-center mx-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/menu/breakfast">
+<ul class="nav justify-content-center mt-3">
+    <li class="nav-item">
+        <a class="nav-link" href="/menu/breakfast">
+            <button class="btn category">
                 Завтраки
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menu/first">
+            </button>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/menu/first">
+            <button class="btn category">
                 Первые блюда
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menu/second">
+            </button>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/menu/second">
+            <button class="btn category">
                 Вторые блюда
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menu/salads">
+            </button>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/menu/salads">
+            <button class="btn category">
                 Салаты
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menu/desserts">
+            </button>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/menu/desserts">
+            <button class="btn category">
                 Десерты
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menu/drinks">
+            </button>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/menu/drinks">
+            <button class="btn category">
                 Напитки
-            </a>
-        </li>
-    </ul>
-</div>
+            </button>
+        </a>
+    </li>
+</ul>
 <div class="container">
     <div class="row">
         {% for item in food_list %}
         <div class="col-md-4 mt-5">
             {% if item == 'add' %}
             <a href="/add">
-                <div class="card h-100 text-center">
+                <div class="card h-100 text-center dish ">
                     <div class="card-body">
                         <img src="{{ url_for('static', filename='img/add.png')}}" class="card-img" alt='Добавить блюдо в меню'>
                     </div>
                 </div>
             </a>
             {% else %}
-            <div class="card h-100 text-center" data-bs-toggle="modal" data-bs-target="#{{item['text_id']}}">
+            <div class="card h-100 text-center dish" data-bs-toggle="modal" data-bs-target="#{{item['text_id']}}" data-toggle="popover" data-bs-placement="top" data-bs-title="Пищевая ценность на 100 г" data-bs-content="Энерг. ценность:
+{{ item['calories_proteins'].split(';')[0] }} Белки: {{ item['calories_proteins'].split(';')[1] }} Жиры: {{ item['calories_proteins'].split(';')[2] }} Углеводы: {{ item['calories_proteins'].split(';')[3] }}" data-bs-trigger="hover focus">
                 <div class="card-body">
                     <img src="{{ url_for('static', filename='img/' + item['text_id'] + '.png') }}" class="card-img-top" alt='{{ item["name"] }}'>
+                    <h5 class="card-title price mb-0">{{item["price"]}}₽</h5>
                     <h5 class="card-title">{{item["name"]}}</h5>
                     <p class="card-text">{{item["description"]}}</p>
-                    <p class="card-text lead">{{item["price"]}}₽</p>
                 </div>
             </div>
             <div class="modal fade" id="noreg" tabindex="-1" aria-labelledby="noregModalLabel" aria-hidden="true">
@@ -68,32 +79,26 @@
                         </div>
                         <div class="modal-footer">
                             <a href="/registration">
-                                <button type="button" class="btn btn-light">Зарегистрироваться</button>
+                                <button type="button" class="btn btn-login">Зарегистрироваться</button>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal" id="{{item['text_id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal" id="{{item['text_id']}}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title fs-5" id="exampleModalLabel">{{item["name"]}}
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-toggle="popover" data-bs-title="Пищевая ценность на 100 г" data-bs-content="Энерг. ценность:
-{{ item['calories_proteins'].split(';')[0] }} Белки: {{ item['calories_proteins'].split(';')[1] }} Жиры: {{ item['calories_proteins'].split(';')[2] }} Углеводы: {{ item['calories_proteins'].split(';')[3] }}">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 20a8 8 0 100-16 8 8 0 000 16zm0 2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" fill="#000"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 11a1 1 0 011 1v5a1 1 0 11-2 0v-5a1 1 0 011-1z" fill="#000"></path>
-                                    <path d="M13.5 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" fill="#000"></path>
-                                </svg>
-                            </h5>
+                            <h5 class="modal-title fs-5" id="ModalLabel">{{item["name"]}}</h5>
                             <div class="star_cont">
                                 <a href="/menu/rate/{{ item['type'] }}/5/{{ item['text_id'] }}" class="star">&#9733;</a>
                                 <a href="/menu/rate/{{ item['type'] }}/4/{{ item['text_id'] }}" class="star">&#9733;</a>
                                 <a href="/menu/rate/{{ item['type'] }}/3/{{ item['text_id'] }}" class="star">&#9733;</a>
                                 <a href="/menu/rate/{{ item['type'] }}/2/{{ item['text_id'] }}" class="star">&#9733;</a>
                                 <a href="/menu/rate/{{ item['type'] }}/1/{{ item['text_id'] }}" class="star">&#9733;</a>
+                                <span class="rating">5.0</span>
                             </div>
-                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
+                             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -103,12 +108,29 @@
                                 <div class="modal-body d-flex flex-column">
                                     <p>Состав:<br>{{item["composition"]}}</p>
                                     {% if current_user.is_authenticated %}
-                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}" type="button" class="rounded-pill btn btn-light btn-block align-self-end justify-content-end">В корзину</a>
+                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}" type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#added">В корзину</a>
                                     {% else %}
-                                    <button type="button" class="rounded-pill btn btn-light btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
+                                    <button type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
                                     {% endif %}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="added" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fs-5" id="Label">Добавлено</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Добавлено</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-login" data-bs-dismiss="modal">Продолжить</button>
+                            <a href="/basket" class="btn btn-login">В корзину</a>
                         </div>
                     </div>
                 </div>
