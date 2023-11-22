@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from flask_wtf import FlaskForm
-from wtforms import DateField, BooleanField, SelectField
+from wtforms import DateField, BooleanField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 
 
@@ -21,6 +21,8 @@ class BookForm(FlaskForm):
     place10 = BooleanField('10')
     place11 = BooleanField('11')
     place12 = BooleanField('12')
+    submit_payment = SubmitField("Оплатить")
+    submit_payment_if_info = SubmitField("Оплатить по привязанной карте")
 
     def __getitem__(self, k):
         if k == '1':
