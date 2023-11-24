@@ -1,0 +1,2 @@
+import dataclasses
+from flask_restful import Resource

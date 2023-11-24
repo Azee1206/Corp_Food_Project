@@ -48,12 +48,12 @@
 <div class="container">
     <div class="row">
         {% for item in food_list %}
-        <div class="col-md-4 mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
             {% if item == 'add' %}
             <a href="/add">
-                <div class="card h-100 text-center dish ">
+                <div class="card h-100 text-center dish">
                     <div class="card-body">
-                        <img src="{{ url_for('static', filename='img/add.png')}}" class="card-img" alt='Добавить блюдо в меню'>
+                        <img src="{{ url_for('static', filename='img/add.png')}}" class="card-img-top my-5" alt='Добавить блюдо в меню'>
                     </div>
                 </div>
             </a>
@@ -96,9 +96,9 @@
                                 <a href="/menu/rate/{{ item['type'] }}/3/{{ item['text_id'] }}" class="star">&#9733;</a>
                                 <a href="/menu/rate/{{ item['type'] }}/2/{{ item['text_id'] }}" class="star">&#9733;</a>
                                 <a href="/menu/rate/{{ item['type'] }}/1/{{ item['text_id'] }}" class="star">&#9733;</a>
-                                <span class="rating">5.0</span>
+                                <span class="rating">{{ item["rating"] }}</span>
                             </div>
-                             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Закрыть">✕</button>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -108,7 +108,9 @@
                                 <div class="modal-body d-flex flex-column">
                                     <p>Состав:<br>{{item["composition"]}}</p>
                                     {% if current_user.is_authenticated %}
-                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}" type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#added">В корзину</a>
+                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}">
+                                        <button type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#added">В корзину</button>
+                                    </a>
                                     {% else %}
                                     <button type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
                                     {% endif %}

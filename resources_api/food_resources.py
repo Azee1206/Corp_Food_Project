@@ -20,7 +20,7 @@ class FoodAllRecourse(Resource):
                 "food":
                     [item.to_dict(only=
                                   ("name", "type", "composition", "description", "price", "visible", "text_id",
-                                   "calories_proteins"))
+                                   "calories_proteins", "rating"))
                      for item in food]
             }
         )
