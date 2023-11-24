@@ -9,4 +9,4 @@ class Statistics(SqlAlchemyBase, SerializerMixin):
     food_name = sqlalchemy.Column(sqlalchemy.String, primary_key=True)
     num_of_sales = sqlalchemy.Column(sqlalchemy.Integer)
     day = sqlalchemy.Column(sqlalchemy.Integer)
-    time = sqlalchemy.Column(sqlalchemy.Time)
+    time = sqlalchemy.Column(sqlalchemy.Integer)
