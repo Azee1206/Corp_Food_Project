@@ -12,7 +12,14 @@ footer {
     background: #A77A58;
     color: #fff;
 }
-.main
+.main-display {
+    font-weight: 400;
+    line-height: 96px;
+}
+.main-lead {
+    font-weight: 400;
+    line-height: 32px;
+}
 footer .nav-link {
     color: #fff;
     text-decoration: none;
