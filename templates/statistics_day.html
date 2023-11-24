@@ -3,10 +3,44 @@
 {% block content %}
 <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item">
-        <a class="nav-link" href="/statistics/month">Продажи блюда по кварталам</a>
+        <a class="nav-link" href="/statistics/month">Заказы блюда по кварталам</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/statistics/day">День с лучшими продажами</a>
+        <a class="nav-link" href="/statistics/day">Лучшие заказы</a>
     </li>
 </ul>
+<div class="container">
+    <h1 class="display-4 text-center">Статистика лучших заказов</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Блюда</th>
+            <th>Количество</th>
+            <th>День</th>
+            <th>Час</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Борщ</td>
+            <td>11</td>
+            <td>Понедельник</td>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>Солянка</td>
+            <td>7</td>
+            <td>Пятница</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>Оливье</td>
+            <td>300</td>
+            <td>Суббота</td>
+            <td>12</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}
