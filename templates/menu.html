@@ -107,14 +107,14 @@
                             <div class="col">
                                 <div class="modal-body d-flex flex-column">
                                     <p>Состав:<br>{{item["composition"]}}</p>
-                                    {% if current_user.is_authenticated %}
-                                    <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}">
-                                        <button type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#added">В корзину</button>
-                                    </a>
-                                    {% else %}
-                                    <button type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
-                                    {% endif %}
                                 </div>
+                                {% if current_user.is_authenticated %}
+                                <a href="/food_add/{{cur_usr.id}}/{{item['text_id']}}/{{item['type']}}">
+                                    <button type="button" class="btn btn-login btn-block align-self-end justify-content-end" data-bs-toggle="modal" data-bs-target="#added">В корзину</button>
+                                </a>
+                                {% else %}
+                                <button type="button" class="btn btn-login btn-block" data-bs-toggle="modal" data-bs-target="#noreg">В корзину</button>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
