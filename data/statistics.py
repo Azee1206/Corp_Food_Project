@@ -10,3 +10,5 @@ class Statistics(SqlAlchemyBase, SerializerMixin):
     num_of_sales = sqlalchemy.Column(sqlalchemy.Integer)
     day = sqlalchemy.Column(sqlalchemy.Integer)
     time = sqlalchemy.Column(sqlalchemy.Integer)
+
+
