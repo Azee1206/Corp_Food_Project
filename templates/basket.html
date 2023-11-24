@@ -22,7 +22,7 @@
             <td>{{item["amount"]}}</td>
             <td>{{item["amount"] * item["price"]}}₽</td>
             <td>
-                <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/{{item['amount']}}" class="rounded-pill btn btn-danger basket-delete">Убрать</a>
+                <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/{{item['amount']}}" class="rounded-pill btn btn-danger basket-delete">✕</a>
             </td>
         </tr>
         {% endfor %}

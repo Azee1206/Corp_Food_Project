@@ -80,6 +80,9 @@ h2 {
         border: 1.5px solid #926949;
     }
 }
+.bg-color {
+    background-color: rgba(0, 0, 0, 0.2);
+}
 .main-btn, .main-btn:hover, .main-btn:active,  .main-btn:visited{
     color: #A77A58;
     text-decoration: none;
