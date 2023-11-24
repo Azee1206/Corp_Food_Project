@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-offset-3 col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal" action="" method="post">
+                        <h2 class="heading">Оплата</h2>
+                        {{ form_payment.hidden_tag() }}
+                        {{ form_payment.number(class="form-control") }}<br>
+                        {% for error in form_payment.number.errors %}
+                        <p class="alert alert-danger" role="alert">{{ error }}</p>
+                        {% endfor %}
+                        {{ form_payment.term(class="form-control") }}<br>
+                        {% for error in form_payment.term.errors %}
+                        <p class="alert alert-danger" role="alert">{{ error }}</p>
+                        {% endfor %}
+                        {{ form_payment.cvc(class="form-control") }}<br>
+                        {% for error in form_payment.cvc.errors %}
+                        <p class="alert alert-danger" role="alert">{{ error }}</p>
+                        {% endfor %}
+                        {{ form_payment.submit(type="submit", class="btn btn-primary rounded-btn")}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

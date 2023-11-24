@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="/add">Добавление</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/delete">Удаление</a>
+    </li>
+</ul>
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                        <h2 class="heading">Добавление блюда</h2>
+                        {{ form.hidden_tag() }}
+                        {{ form.name(class="form-control") }}<br>
+                        {{ form.type(class="form-control") }}<br>
+                        {{ form.description(class="form-control") }}<br>
+                        {{ form.composition(class="form-control") }}<br>
+                        {{ form.calories(class="form-control") }}<br>
+                        {{ form.proteins(class="form-control") }}<br>
+                        {{ form.fats(class="form-control") }}<br>
+                        {{ form.carb(class="form-control") }}<br>
+                        {{ form.price(class="form-control") }}<br>
+                        {{ form.image(class="form-control image") }}<br>
+                        {{ form.submit(type="submit", class="btn btn-primary") }}
+                        <div>{{ message }}</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

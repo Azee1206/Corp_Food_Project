@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4 text-center">Заказы</h1>
+    <table class="table table-text">
+        <thead>
+        <tr>
+            <th>Номер заказа</th>
+            <th>Фамилия и имя клиента</th>
+            <th>Статус</th>
+            <th>Сумма</th>
+            <th>Список блюд</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{order["order_num"]}}</td>
+            <td>{{order["order_name_sur"]}}</td>
+            <td>{{order["order_status"]}}</td>
+            <td>{{order["order_sum"]}} руб.</td>
+            <td>{% for cart_ord in order["order_info"] %}{{ cart_ord['amount'] }} {{ cart_ord['name'] }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
