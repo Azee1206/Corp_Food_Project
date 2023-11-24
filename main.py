@@ -53,6 +53,10 @@ api.add_resource(OrderResource, "/api/orders/<order_id>")
 api.add_resource(AllTableResources, "/api/all_tables")
 api.add_resource(TableResource, "/api/table/<path:table_places_date_time>")
 
+api.add_resource(AllStatisticsResources, "/api/all_stat")
+api.add_resource(StatisticResources, "/api/stat")
+api.add_resource(StatisticsMonthResources, "/api/month_stat")
+
 app.config['SECRET_KEY'] = "secret_key"
 
 
