@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from flask_wtf import FlaskForm
-from wtforms import DateField, BooleanField, SelectField, SubmitField
+from wtforms import DateField, BooleanField, SelectField, SubmitField, RadioField
 from wtforms.validators import DataRequired
 
 
@@ -21,6 +21,7 @@ class BookForm(FlaskForm):
     place10 = BooleanField('10')
     place11 = BooleanField('11')
     place12 = BooleanField('12')
+    delivery = RadioField(choices=[("False", 'В столовой'), ("True", 'Доставка до рабочего места')])
     submit_payment = SubmitField("Оплатить")
     submit_payment_if_info = SubmitField("Оплатить по привязанной карте")
 

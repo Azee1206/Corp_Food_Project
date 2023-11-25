@@ -43,6 +43,7 @@
                             {{ form_book[seat[0]] }}<br>
                             {% endif %}
                             {% endfor %}
+                            {{ form_book.delivery() }}<br>
                             <div class="row">
                                 <div class="col">
                                     {{ form_book.submit_payment(type="submit", class="btn btn-sm btn-success rounded-btn") }}
@@ -101,6 +102,7 @@
                             {{ form_book[seat[0]] }}<br>
                             {% endif %}
                             {% endfor %}
+                            {{ form_book.delivery() }}<br>
                             <div class="row">
                                 <div class="col">
                                     {{ form_book.submit_payment(type="submit", class="btn btn-sm btn-success rounded-btn") }}

@@ -23,7 +23,7 @@ async def pay_if_payment_info(table_places_date_time: str):
     await session.close()
 
     msg = "Оплата проведена успешно"
-    return render_template("basket.html", message=msg, food_list=[])
+    return render_template("basket.html", message=msg, food_list=[], empty=True)
 
 
 async def get_booked_places(form):
