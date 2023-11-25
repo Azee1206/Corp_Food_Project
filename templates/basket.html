@@ -22,9 +22,9 @@
             <td>{{item["amount"]}}</td>
             <td>{{item["amount"] * item["price"]}}₽</td>
             <td class="d-flex justify-content-center">
-                <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/{{item['amount']}}" class="rounded-pill btn btn-secondary basket-delete">-</a>
+                <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/1" class="rounded-pill btn btn-secondary basket-delete">-</a>
                 <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/{{item['amount']}}" class="rounded-pill btn btn-danger basket-delete">✕</a>
-                <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/{{item['amount']}}" class="rounded-pill btn btn-success basket-delete">+</a>
+                <a href="/food_delete/{{cur_usr.id}}/{{item['food_id']}}/-1" class="rounded-pill btn btn-success basket-delete">+</a>
             </td>
         </tr>
         {% endfor %}

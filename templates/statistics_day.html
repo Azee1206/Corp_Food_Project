@@ -21,25 +21,14 @@
         </tr>
         </thead>
         <tbody>
+        {% for item in stat_list %}
         <tr>
-            <td>Борщ</td>
-            <td>11</td>
-            <td>Понедельник</td>
-            <td>14</td>
+            <td>{{ item["food_name"] }}</td>
+            <td>{{ item["num_of_sales"] if item["num_of_sales"] else 0}}</td>
+            <td>{{ days[item["day"]] }}</td>
+            <td>{{ item["time"] if item["time"] else ""}}</td>
         </tr>
-        <tr>
-            <td>Солянка</td>
-            <td>7</td>
-            <td>Пятница</td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>Оливье</td>
-            <td>300</td>
-            <td>Суббота</td>
-            <td>12</td>
-
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>
