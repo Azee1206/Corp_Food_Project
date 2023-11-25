@@ -97,7 +97,9 @@ h2 {
     background-position: center center;
     background-size: cover;
 }
-
+.basket-delete {
+    margin-right: 5px;
+}
 @media screen and (max-width: 530px) {
     .table-text {
         font-size: 0.8rem;
