@@ -33,11 +33,14 @@
             {% if current_user.is_authenticated %}
             {% if current_user.role == "admin"%}
             <li class="nav-item">
-                <a class="nav-link" href="/add">Изменение меню</a>
+                <a class="nav-link" href="/add">Редактирование меню</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/orders">Заказы</a>
             </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/statistics/month">Статистика</a>
+                </li>
             {% endif %}
             {% endif %}
         </ul>

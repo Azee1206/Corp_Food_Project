@@ -118,6 +118,12 @@ async def lunch_page():
     return render_template("lunch.html")
 
 
+@app.route('/delete')
+async def delete_page():
+    form2 = DeleteForm()
+    return render_template("delete.html", form2=form2)
+
+
 def run_schedule():
     while True:
         schedule.run_pending()

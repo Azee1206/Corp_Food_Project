@@ -12,6 +12,14 @@ footer {
     background: #A77A58;
     color: #fff;
 }
+.main-display {
+    font-weight: 400;
+    line-height: 96px;
+}
+.main-lead {
+    font-weight: 400;
+    line-height: 32px;
+}
 footer .nav-link {
     color: #fff;
     text-decoration: none;
@@ -72,16 +80,59 @@ h2 {
         border: 1.5px solid #926949;
     }
 }
+.bg-color {
+    background-color: rgba(0, 0, 0, 0.2);
+}
 .main-btn, .main-btn:hover, .main-btn:active,  .main-btn:visited{
     color: #A77A58;
     text-decoration: none;
 }
+.basket-delete {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+}
 .main-back {
     background-image: url('../img/background.png');
-    width: 100%;
     height: 100vh;
     background-position: center center;
     background-size: cover;
+}
+
+@media screen and (max-width: 530px) {
+    .table-text {
+        font-size: 0.8rem;
+    }
+    .basket-delete {
+        font-size: 0.6rem;
+    }
+}
+@media screen and (max-width: 450px) {
+    .display-1 {
+        font-size: 5rem;
+    }
+    .main-h {
+        font-size: 1.4rem;
+    }
+    .main-text {
+        font-size: 0.9rem;
+    }
+    .basket-delete {
+        font-size: 0.5rem;
+    }
+}
+@media screen and (max-width: 435px) {
+    .table-text {
+        font-size: 0.65rem;
+    }
+    .basket-delete {
+        font-size: 0.4rem;
+    }
+}
+@media screen and (max-width: 386px) {
+    .basket-delete {
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
 }
 .rating {
     font-size: 27px;
