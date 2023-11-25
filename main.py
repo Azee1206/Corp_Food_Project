@@ -1,8 +1,7 @@
 import os
-from flask import Flask, render_template, redirect
+from flask import Flask, redirect
 from flask import make_response, jsonify
 from flask_login import LoginManager, login_required, logout_user
-from forms.add import AddForm, DeleteForm
 from data import db_session
 import api_food
 import schedule
@@ -13,7 +12,7 @@ import asyncio
 
 from flask_restful import Api
 from resources_api.user_resources import UserHistoryResource, UserCartResource, UserPaymentResource, UserNameSurResource
-from resources_api.food_resources import FoodAllRecourse, FoodRecourse, FoodRatingRecourse
+from resources_api.food_resources import FoodAllRecourse, FoodRecourse, FoodRatingRecourse, AllFoodNameRecourse
 from resources_api.order_resources import OrderResource, OrderAllRecourse
 from resources_api.table_resources import AllTableResources, TableResource
 from resources_api.statistics_resorces import AllStatisticsResources, StatisticResources, StatisticsQuarterResources, StatisticsAdd
@@ -31,7 +30,7 @@ schedule.every().hour.at(":45").do(check_tables)
 schedule.every().hour.at(":00").do(check_tables)
 
 from pages import (default, registration, login, menu, basket, book,
-                   payment, profile, orders, statistics, add_page)
+                   payment, profile, orders, statistics, add_page, delete)
 
 api = Api(app)
 
@@ -43,6 +42,7 @@ api.add_resource(UserNameSurResource, "/api/user/name_sur/<int:user_id>")
 api.add_resource(FoodAllRecourse, '/api/food_all/<path:visible_foodtype>')
 api.add_resource(FoodRecourse, "/api/food/<food_id>")
 api.add_resource(FoodRatingRecourse, "/api/food/rating")
+api.add_resource(AllFoodNameRecourse, "/api/food/all_name")
 
 api.add_resource(OrderAllRecourse, "/api/all_orders")
 api.add_resource(OrderResource, "/api/orders/<order_id>")
@@ -79,17 +79,6 @@ async def logout():
     logout_user()
 
     return redirect("/")
-
-
-@app.route('/lunch')
-async def lunch_page():
-    return render_template("lunch.html")
-
-
-@app.route('/delete')
-async def delete_page():
-    form2 = DeleteForm()
-    return render_template("delete.html", form2=form2)
 
 
 def run_schedule():

@@ -20,5 +20,5 @@ class AddForm(FlaskForm):
 
 class DeleteForm(FlaskForm):
     """Форма удаления блюда"""
-    name = SelectField('Блюдо', validators=[DataRequired()], choices=[])
+    name = SelectField('Блюдо', validators=[DataRequired()], choices=["Борщ", "Солянка", "Бульон куриный с лапшой"])
     submit = SubmitField('Удалить')

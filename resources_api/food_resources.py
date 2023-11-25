@@ -79,3 +79,18 @@ class FoodRatingRecourse(Resource):
         food.rating = (cur_rating_inf + int(rate)) / 2
         db_sess.commit()
         return jsonify({'success': 'OK'})
+
+
+@dataclasses.dataclass
+class AllFoodNameRecourse(Resource):
+    def get(self):
+        db_sess = db_session.create_session()
+        food_names = db_sess.query(Food.name).all()
+        return jsonify(
+            {
+                "food":
+                    [item.to_dict(only=
+                                  ("name"))
+                     for item in food_names]
+            }
+        )
