@@ -28,8 +28,9 @@ async def add_page():
                        "carbohydrates": form.carb.data})
             img = form.image.data
             img.save(os.path.join(app.root_path, "static", "img", f"{text_id}.png"))
+            await session.post("http://localhost:5000/api/add_stat",
+                               json={"text_id": text_id, "food_name": form.name.data})
             await session.close()
-
 
     except Exception as e:
         msg = "При создании блюда произошла ошибка"

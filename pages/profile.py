@@ -42,7 +42,10 @@ async def profile_page():
 
     session = aiohttp.ClientSession()
 
-    payment_inf = await get_payment_inf(session)
+    if current_user.payment_inf:
+        payment_inf = await get_payment_inf(session)
+    else:
+        payment_inf = ["", "", ""]
 
     history_result = await session.get(f"http://localhost:5000/api/user/history/{current_user.id}")
     history_json = await history_result.json()

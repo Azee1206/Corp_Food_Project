@@ -98,3 +98,24 @@ class StatisticsQuarterResources(Resource):
                      for item in stat]
             }
         )
+
+
+@dataclasses.dataclass
+class StatisticsAdd(Resource):
+    def post(self):
+        if not request.json:
+            return jsonify({'error': 'Empty request'})
+        elif not all(key in request.json for key in
+                     ["text_id", "food_name"]):
+            return jsonify({'error': 'Bad request'})
+        db_sess = db_session.create_session()
+        stat = Statistics(
+            text_id=request["text_id"],
+            food_name=request["food_name"]
+        )
+        month_stat = StatisticsQuarter(
+            text_id=request["text_id"],
+            food_name=request["food_name"]
+        )
+        db_sess.add(stat)
+        db_sess.add(month_stat)

@@ -16,7 +16,7 @@ from resources_api.user_resources import UserHistoryResource, UserCartResource, 
 from resources_api.food_resources import FoodAllRecourse, FoodRecourse, FoodRatingRecourse
 from resources_api.order_resources import OrderResource, OrderAllRecourse
 from resources_api.table_resources import AllTableResources, TableResource
-from resources_api.statistics_resorces import AllStatisticsResources, StatisticResources, StatisticsQuarterResources
+from resources_api.statistics_resorces import AllStatisticsResources, StatisticResources, StatisticsQuarterResources, StatisticsAdd
 
 
 app = Flask(__name__)
@@ -53,6 +53,7 @@ api.add_resource(TableResource, "/api/table/<path:table_places_date_time>")
 api.add_resource(AllStatisticsResources, "/api/all_stat")
 api.add_resource(StatisticResources, "/api/stat")
 api.add_resource(StatisticsQuarterResources, "/api/month_stat")
+api.add_resource(StatisticsAdd, "/api/add_stat")
 
 app.config['SECRET_KEY'] = "secret_key"
 
