@@ -30,6 +30,7 @@ async def add_page():
             img.save(os.path.join(app.root_path, "static", "img", f"{text_id}.png"))
             await session.close()
 
+
     except Exception as e:
         msg = "При создании блюда произошла ошибка"
         print(e)
