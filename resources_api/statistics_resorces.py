@@ -5,14 +5,14 @@ from flask_restful import Resource
 from data import db_session
 from flask import request, jsonify
 from data.statistics import Statistics
-from data.statistics_month import StatisticsMonth
+from data.statistics_quarter import StatisticsQuarter
 
 
 @dataclasses.dataclass
 class AllStatisticsResources(Resource):
     def get(self):
         db_sess = db_session.create_session()
-        stat = db_sess.query(Statistics).all()
+        stat = db_sess.query(Statistics).order_by(-Statistics.num_of_sales).all()
         return jsonify(
             {
                 "statistics":
@@ -28,92 +28,73 @@ class StatisticResources(Resource):
         if not request.json:
             return jsonify({'error': 'Empty request'})
         elif not all(key in request.json for key in
-                     ["day", "time", "cart"]):
+                     ["cart"]):
             return jsonify({'error': 'Bad request'})
         db_sess = db_session.create_session()
-        cart: list[str] = request.json["cart"].split(";")
+        cart: list[str] = request.json["cart"].split(";")[:-1]
         for pare in cart:
-            amount, food_id = pare.split(".")
-            stat: Statistics = db_sess.query(Statistics).get(food_id)
+            print(pare)
+            amount, text_id = pare.split(".")
+            print(amount, text_id)
+            amount = int(amount)
+            stat: Statistics = db_sess.query(Statistics).get(text_id)
+            print(stat)
             stat.num_of_sales += amount
+            day = datetime.datetime.now().weekday() + 1
+            hour = datetime.datetime.now().hour
             if not stat.day:
-                stat.day = request.json["day"]
+                stat.day = day
             else:
-                stat.day = round((request.json["day"] + stat.day) / 2)
+                stat.day = round((day + stat.day) / 2)
             if not stat.time:
-                stat.time = request.json["time"]
+                stat.time = hour
             else:
-                stat.time = round((request.json["time"] + stat.time) / 2)
+                stat.time = round((hour + stat.time) / 2)
 
-            month_stat: StatisticsMonth = db_sess.query(StatisticsMonth).get(food_id)
+            month_stat: StatisticsQuarter = db_sess.query(StatisticsQuarter).get(text_id)
 
             month_now = datetime.datetime.now().month
 
             match month_now:
                 case 1:
-                    month_stat.january += amount
+                    month_stat.first_quarter += amount
                 case 2:
-                    month_stat.february += amount
+                    month_stat.first_quarter += amount
                 case 3:
-                    month_stat.march += amount
+                    month_stat.first_quarter += amount
                 case 4:
-                    month_stat.april += amount
+                    month_stat.second_quarter += amount
                 case 5:
-                    month_stat.may += amount
+                    month_stat.second_quarter += amount
                 case 6:
-                    month_stat.june += amount
+                    month_stat.second_quarter += amount
                 case 7:
-                    month_stat.july += amount
+                    month_stat.third_quarter += amount
                 case 8:
-                    month_stat.august += amount
+                    month_stat.third_quarter += amount
                 case 9:
-                    month_stat.september += amount
+                    month_stat.third_quarter += amount
                 case 10:
-                    month_stat.october += amount
+                    month_stat.fourth_quarter += amount
                 case 11:
-                    month_stat.november += amount
+                    month_stat.fourth_quarter += amount
                 case 12:
-                    month_stat.december += amount
+                    month_stat.fourth_quarter += amount
 
         db_sess.commit()
         return jsonify({'success': 'OK'})
 
 
 @dataclasses.dataclass
-class StatisticsMonthResources(Resource):
-    def get(self, quarter):
+class StatisticsQuarterResources(Resource):
+    def get(self):
         db_sess = db_session.create_session()
-        stat = db_sess.query(StatisticsMonth).get().all()
-        match quarter:
-            case 1:
-                return jsonify(
-                    {
-                        "statistics":
-                            [item.to_dict(only=("january", "february", "march"))
-                             for item in stat]
-                    }
-                )
-            case 2:
-                return jsonify(
-                    {
-                        "statistics":
-                            [item.to_dict(only=("april", "may", "june"))
-                             for item in stat]
-                    }
-                )
-            case 3:
-                return jsonify(
-                    {
-                        "statistics":
-                            [item.to_dict(only=("july", "august", "september"))
-                             for item in stat]
-                    }
-                )
-            case 4:
-                return jsonify(
-                    {
-                        "statistics":
-                            [item.to_dict(only=("october", "november", "december"))
-                             for item in stat]
-                    }
-                )
+        stat = db_sess.query(StatisticsQuarter).all()
+        return jsonify(
+            {
+                "statistics":
+                    [item.to_dict(only=("food_name", "first_quarter",
+                                        "second_quarter", "third_quarter", "fourth_quarter"))
+                     for item in stat]
+            }
+        )

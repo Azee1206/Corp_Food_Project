@@ -1,3 +1,4 @@
 import datetime
 
-print(datetime.datetime.now().month)
+a = ['1.forelandovosh', 'a']
+print(a[:-1])

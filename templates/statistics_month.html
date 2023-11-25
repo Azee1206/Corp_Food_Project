@@ -22,27 +22,15 @@
         </tr>
         </thead>
         <tbody>
+        {% for item in stat_list %}
         <tr>
-            <td>Борщ</td>
-            <td>50</td>
-            <td>30</td>
-            <td>20</td>
-            <td>20</td>
+            <td>{{ item["food_name"] }}</td>
+            <td>{{ item["first_quarter"] if item["first_quarter"] else 0}}</td>
+            <td>{{ item["second_quarter"] if item["second_quarter"] else 0}}</td>
+            <td>{{ item["third_quarter"] if item["third_quarter"] else 0}}</td>
+            <td>{{ item["fourth_quarter"] if item["fourth_quarter"] else 0}}</td>
         </tr>
-        <tr>
-            <td>Солянка</td>
-            <td>40</td>
-            <td>35</td>
-            <td>25</td>
-            <td>25</td>
-        </tr>
-        <tr>
-            <td>Оливье</td>
-            <td>45</td>
-            <td>28</td>
-            <td>22</td>
-            <td>22</td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>

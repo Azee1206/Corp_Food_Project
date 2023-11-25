@@ -10,6 +10,7 @@ import aiohttp
 async def pay_if_payment_info(table_places_date_time: str):
 
     session = aiohttp.ClientSession()
+    await session.post(f"http://localhost:5000/api/stat", json={"cart": current_user.cart})
     await session.post(f"http://localhost:5000/api/user/history/{current_user.id}")
     await session.post(f"http://localhost:5000/api/table/{table_places_date_time}")
     name_sur_info = await session.get(f"http://localhost:5000/api/user/name_sur/{current_user.id}")

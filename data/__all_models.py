@@ -4,4 +4,4 @@ from . import orders
 from . import tabels
 from . import table_places_taken
 from . import statistics
-from . import statistics_month
+from . import statistics_quarter

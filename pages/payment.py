@@ -1,5 +1,5 @@
 from __main__ import app
-from flask import render_template, redirect
+from flask import render_template
 from flask_login import current_user
 from forms.payment import PaymentForm
 import aiohttp
@@ -24,6 +24,7 @@ async def payment_page(table_places_date_time):
             msg = "Некорректный формат cvc кода"
             return render_template("payment.html", form_payment=form_payment, message=msg)
         session = aiohttp.ClientSession()
+        await session.post(f"http://localhost:5000/api/stat", json={"cart": current_user.cart})
         await session.post(f"http://localhost:5000/api/user/history/{current_user.id}")
         await session.post(f"http://localhost:5000/api/table/{table_places_date_time}")
         name_sur_info = await session.get(f"http://localhost:5000/api/user/name_sur/{current_user.id}")
